@@ -11,7 +11,7 @@
 
 @implementation NSObject (CLSwizzling)
 
-void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector)   {
+void cl_swizzleMethod_tool(Class class, SEL originalSelector, SEL swizzledSelector)   {
     //原有方法
     Method originalMethod = class_getInstanceMethod(class, originalSelector);
     //替换原有方法的新方法

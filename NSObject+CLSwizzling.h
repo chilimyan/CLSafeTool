@@ -10,6 +10,6 @@
 
 @interface NSObject (CLSwizzling)
 
-void swizzleMethod(Class class, SEL originalSelector, SEL swizzledSelector);
+void cl_swizzleMethod_tool(Class class, SEL originalSelector, SEL swizzledSelector);
 
 @end

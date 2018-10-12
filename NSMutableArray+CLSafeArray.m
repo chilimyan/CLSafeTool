@@ -19,12 +19,12 @@ static char const *classNameM = "__NSArrayM";
     dispatch_once(&onceToken, ^{
         Class classM = objc_getClass(classNameM);
         
-        swizzleMethod(classM, @selector(objectAtIndex:), @selector(cl_objectAtIndex:));
-        swizzleMethod(classM, @selector(insertObject:atIndex:), @selector(cl_insertObject:atIndex:));
-        swizzleMethod(classM, @selector(setObject:atIndex:), @selector(cl_setObject:atIndex:));
-        swizzleMethod(classM, @selector(setObject:atIndexedSubscript:), @selector(cl_setObject:atIndexedSubscript:));
-        swizzleMethod(classM, @selector(removeObjectsInRange:), @selector(cl_removeObjectsInRange:));
-        swizzleMethod(classM, @selector(replaceObjectAtIndex:withObject:), @selector(cl_replaceObjectAtIndex:withObject:));
+        cl_swizzleMethod_tool(classM, @selector(objectAtIndex:), @selector(cl_objectAtIndex:));
+        cl_swizzleMethod_tool(classM, @selector(insertObject:atIndex:), @selector(cl_insertObject:atIndex:));
+        cl_swizzleMethod_tool(classM, @selector(setObject:atIndex:), @selector(cl_setObject:atIndex:));
+        cl_swizzleMethod_tool(classM, @selector(setObject:atIndexedSubscript:), @selector(cl_setObject:atIndexedSubscript:));
+        cl_swizzleMethod_tool(classM, @selector(removeObjectsInRange:), @selector(cl_removeObjectsInRange:));
+        cl_swizzleMethod_tool(classM, @selector(replaceObjectAtIndex:withObject:), @selector(cl_replaceObjectAtIndex:withObject:));
     });
 }
 

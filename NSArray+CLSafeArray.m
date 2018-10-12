@@ -24,11 +24,11 @@ static char const *classNamePlaceHold = "__NSPlaceholderArray";
         Class classSingle = objc_getClass(classNameSingle);
         Class classI = objc_getClass(classNameI);
         Class classPlaceHold = objc_getClass(classNamePlaceHold);
-        swizzleMethod(class0, @selector(objectAtIndex:), @selector(cl_objectAtIndex0:));
-        swizzleMethod(classSingle, @selector(objectAtIndex:), @selector(cl_objectAtIndexSingle:));
-        swizzleMethod(classI, @selector(objectAtIndex:), @selector(cl_objectAtIndexI:));
-        swizzleMethod(classPlaceHold, @selector(objectAtIndex:), @selector(cl_objectAtIndexPlaceHold:));
-        swizzleMethod(classPlaceHold, @selector(initWithObjects:count:), @selector(initWithObjects_cl:count:));
+        cl_swizzleMethod_tool(class0, @selector(objectAtIndex:), @selector(cl_objectAtIndex0:));
+        cl_swizzleMethod_tool(classSingle, @selector(objectAtIndex:), @selector(cl_objectAtIndexSingle:));
+        cl_swizzleMethod_tool(classI, @selector(objectAtIndex:), @selector(cl_objectAtIndexI:));
+        cl_swizzleMethod_tool(classPlaceHold, @selector(objectAtIndex:), @selector(cl_objectAtIndexPlaceHold:));
+        cl_swizzleMethod_tool(classPlaceHold, @selector(initWithObjects:count:), @selector(initWithObjects_cl:count:));
     });
 }
 
