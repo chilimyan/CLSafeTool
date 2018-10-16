@@ -10,6 +10,6 @@
 
 @interface CLMethodCrashHelper : NSObject
 
-- (instancetype)initWithRecognizedSelector:(SEL)selector;
+- (instancetype)initWithRecognizedSelector:(SEL)selector class:(Class)class;
 
 @end

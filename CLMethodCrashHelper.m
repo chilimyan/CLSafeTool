@@ -17,31 +17,20 @@
 
 @implementation CLMethodCrashHelper
 
-- (instancetype)initWithRecognizedSelector:(SEL)selector{
+- (instancetype)initWithRecognizedSelector:(SEL)selector class:(Class)class{
     if (self = [super init]) {
         _selector = selector;
         NSString *selectorString = NSStringFromSelector(_selector);
         SEL sel = sel_registerName([selectorString UTF8String]);
         __weak typeof(self) weakSelf = self;
-        IMP imp = imp_implementationWithBlock(^(id a){
-            NSLog(@"NSObject+CLSafeMethod---在类:%@中 未实现该方法:%@",NSStringFromClass([self class]),NSStringFromSelector(weakSelf.selector));
+        //随便写一个实现
+        IMP imp = imp_implementationWithBlock(^(id param){
+            NSLog(@"ERROR==========NSObject+CLSafeMethod---在类:%@中 未实现该方法:%@",NSStringFromClass(class),NSStringFromSelector(weakSelf.selector));
         });
+        ///为这个没实现的方法动态添加到这个类里面。
         class_addMethod([self class], sel, imp, "v@:@");
     }
     return self;
 }
-
-/////重写forwardInvocation:的同时也要重写methodSignatureForSelector:方法，否则会抛出异常。
-//- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
-//    return [NSMethodSignature signatureWithObjCTypes:"v@:@"];
-//}
-//
-/////对于调用没用实现的方法时。由于找不到该方法，而进入消息转发流程。重写消息转发的最后一个步骤，给出提示。不让其闪退。
-//- (void)forwardInvocation:(NSInvocation *)anInvocation{
-//    NSLog(@"NSObject+CLSafeMethod---在类:%@中 未实现该方法:%@",NSStringFromClass([anInvocation.target class]),NSStringFromSelector(anInvocation.selector));
-//}
-
-
-
 
 @end
